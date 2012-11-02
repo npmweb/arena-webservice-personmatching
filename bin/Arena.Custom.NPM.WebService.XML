@@ -1,0 +1,1867 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Arena.Custom.NPM.WebService</name>
+    </assembly>
+    <members>
+        <member name="T:Arena.Custom.NPM.WebService.PersonAPI">
+            <summary>
+            PersonAPI handles all methods and functions dealing with the Arena Person and related objects.
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.PersonAPI.GetPersonRelationships(System.Int32)">
+             <summary>
+             <b>GET person/{id}/relationships</b>
+            
+             Retrieve a list of all person relationships for the given person ID.
+             \since 1.0.0
+             </summary>
+             <returns>List of PersonRelationship objects.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.PersonAPI.GetPersonSmallGroupMembership(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Retrieve a list of all small group membership for the person.
+            Security is taken into consideration, so if the logged in user does not
+            have permission to see the group, it will not be returned.
+            </summary>
+            <param name="id">The ID number of the person to retrieve membership of.</param>
+            <param name="start">The start index to begin retrieving records at.</param>
+            <param name="max">The maximum number of records to retrieve.</param>
+            <returns>GenericListResult of SmallGroupMember objects.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.PersonAPI.GetPersonSmallGroupLeadership(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Retrieve a list of all small groups that this person is a leader of.
+            Security is taken into consideration, so if the logged in user does not
+            have permission to see the group, it will not be returned.
+            </summary>
+            <param name="id">The ID number of the person to retrieve membership of.</param>
+            <param name="start">The start index to begin retrieving records at.</param>
+            <param name="max">The maximum number of records to retrieve.</param>
+            <returns>GenericListResult of GenericReference objects.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.PersonAPI.GetPersonProfileMembership(System.Int32,System.Int32,System.String,System.Int32,System.Int32)">
+            <summary>
+            Retrieve a list of all profiles that this person is a member of.
+            Security is taken into consideration, so if the logged in user does not
+            have permission to see the tag, it will not be returned.
+            </summary>
+            <param name="id">The ID number of the person to retrieve membership of.</param>
+            <param name="inactive">Wether or not to include inactive membership information.</param>
+            <param name="type">The profile type (personal, ministry, serving) to retrieve membership of.</param>
+            <param name="start">The start index to begin retrieving records at.</param>
+            <param name="max">The maximum number of records to retrieve.</param>
+            <returns>GenericListResult of ProfileMember objects.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.PersonAPI.AddAddress">
+            <summary>
+            Add an address to the Person's account.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - POST<para></para>
+             Method - person/add/address<para></para>
+             Security - Custom<para></para>
+            </summary>
+            <param name="isprimary">true,false</param>
+            <param name="personid"></param>
+            <param name="addresstype">Bad Address,Business Address,College Address,Family Alternate,Individual Alternate,Main/Home Address,P. O. Box,Previous Address,Summer Address,Winter Address,Work Address</param>
+            <param name="city"></param>
+            <param name="postalcode"></param>
+            <param name="state"></param>
+            <param name="street1"></param>
+            <param name="street2"></param>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.PersonAPI.AddEmail">
+            <summary>  
+             Adds a new email to the Person's account if it isn't already there.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - POST<para></para>
+             Method - person/add/email<para></para>
+             Security - Custom<para></para>
+             </summary>
+             <param name="personid"></param>
+             <param name="email"></param>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.PersonAPI.AddPhone">
+            <summary>  
+             Adds a new phone number to the Person's account if it isn't already there.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - POST<para></para>
+             Method - person/add/phone<para></para>
+             Security - Custom<para></para>
+            </summary>
+             <param name="personid"></param>
+             <param name="phone"></param>
+             <param name="phonetype">alpha pager, Business, Cell, FAX, Home Fax, Internal Phone, Main/Home, Messages, Other Phone, Other Phone 1, Other Phone 2, Pager, Personal, Voice mail</param>
+             <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Arena.Custom.NPM.WebService.PersonAPI.GetPersonMatch(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)" -->
+        <member name="M:Arena.Custom.NPM.WebService.PersonAPI.GetPersonInvolvement(System.Int32,System.String)">
+            <summary>  
+             A generic list of Person Involvement References are populated for the Person referenced by the person id.
+             The Person Involvement References contain information about the departments, categories and small groups the Person belongs to.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - GET<para></para>
+             Method - person/involvement/personid/{id}?sessionid={sessionid}<para></para>
+             Security - Builtin<para></para>
+             </summary>
+             <param name="id">Id is the Person Id.</param>
+             <returns>PersonInvolvementReference Object</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Arena.Custom.NPM.WebService.PersonAPI.GetPersonInvolvement(System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.Int32,System.String)" -->
+        <member name="M:Arena.Custom.NPM.WebService.PersonAPI.Add">
+            <summary>
+            Adds a Person and a new Family<para></para>
+            <b>WEBSERVICE</b><para></para>
+            Action - POST<para></para>
+            Method - person/add<para></para>
+            Security - Custom<para></para>
+            </summary>
+            <returns>PersonReference - Object</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.PersonAPI.Update">
+            <summary>
+            Updates a person's personal information.<para></para>
+            <b>WEBSERVICE</b><para></para>
+            Action - POST<para></para>
+            Method - person/update<para></para>
+            Security - Custom<para></para>
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.PersonAPI.Save(System.Nullable{System.Int32})">
+            <summary>
+            Creates or updates a person based upon whether a Person Id is provided.
+            </summary>
+            <param name="personIdNullable"></param>
+            <returns>Person Id</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.PersonAPI.ConvertPersonToPersonReference(Arena.Core.Person)">
+            <summary>
+            Loads an PersonReference object with the corresponding values in the Person object
+            </summary>
+            <param name="person"></param>
+            <returns>PersonReference - Object</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.PersonAPI.CalculateMatchPercent(Arena.Custom.NPM.WebService.Contracts.PersonReference,Arena.Custom.NPM.WebService.Contracts.PersonReference,System.String@)">
+            <summary>
+            Calculates a percent corrsponding to the number of matching elements between two PersonReference objects.
+            </summary>
+            <param name="personOrig"></param>
+            <param name="person"></param>
+            <param name="matchMap"></param>
+            <returns>Match Percentage</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Arena.Custom.NPM.WebService.ContributionAPI.GetByPersonId(System.Int32,System.String,System.String)" -->
+        <member name="T:Arena.Custom.NPM.WebService.Contracts.ProfileMember">
+            <summary>
+            Contains the information that describes a person's status as a
+            member of a profile.
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.Contracts.ProfileMember.#ctor(Arena.Core.ProfileMember)">
+            <summary>
+            Create a new ProfileMember contract that can be sent to
+            a remote API client.
+            </summary>
+            <param name="arena">The Profile object to create a contract for.</param>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.ProfileMember.Profile">
+            <summary>
+            The Profile that this record pertains to.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.ProfileMember.Person">
+            <summary>
+            The Person that this record pertains to.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.ProfileMember.AttendanceCount">
+            <summary>
+            The number of occurrences in this profile that this person
+            has attended.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.ProfileMember.DateActive">
+            <summary>
+            The date stamp that this person was made active in this
+            profile.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.ProfileMember.DateDormant">
+            <summary>
+            The date stamp that this person was made dormant in this
+            profile.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.ProfileMember.DateInReview">
+            <summary>
+            The date stamp that this person was marked as in review
+            in this profile.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.ProfileMember.DatePending">
+            <summary>
+            The date stamp that this person was marked as pending in
+            this profile.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.ProfileMember.MemberNotes">
+            <summary>
+            Any notes that have been placed on this person for this
+            profile.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.ProfileMember.Source">
+            <summary>
+            The source of this person, how they got added to the profile.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.ProfileMember.Status">
+            <summary>
+            The status of this person in this profile.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.ProfileMember.StatusReason">
+            <summary>
+            The descriptive reason for why the person has the status they
+            do. This may not always exist as only some status' have a
+            reason.
+            </summary>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster">
+            <summary>
+            Contains the basic information about a group cluster.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.ClusterID">
+            <summary>
+            The Group Cluster ID that this information pertains to.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.ParentClusterID">
+            <summary>
+            The parent cluster ID of this cluster.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.CategoryID">
+            <summary>
+            The group category ID of this cluster.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.Name">
+            <summary>
+            The name of this cluster.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.Active">
+            <summary>
+            Flag which indicates wether or not this group cluster is
+            active.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.ClusterLevelID">
+            <summary>
+            Retrieve the level of this group cluster.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.ClusterTypeID">
+            <summary>
+            Retrieve the cluster type of this group cluster.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.Description">
+            <summary>
+            Description of this group cluster.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.Notes">
+            <summary>
+            Notes that relate to this group cluster.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.ClusterCount">
+            <summary>
+            The number of child clusters under this cluster.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.RegistrationCount">
+            <summary>
+            The number of pending registrations in this group
+            cluster and its descendents. This property is
+            read-only.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.MemberCount">
+            <summary>
+            The number of members in this group cluster and its
+            descendents. This property is read-only.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.GroupCount">
+            <summary>
+            The number of small groups in this group cluster and
+            its descendents. This property is read-only.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.Admin">
+            <summary>
+            The person who is the administrator of
+            this group cluster.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.Leader">
+            <summary>
+            The person who is considered the leader of
+            this group cluster.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.AreaID">
+            <summary>
+            The Area ID that this group cluster belongs to.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.ClusterUrl">
+            <summary>
+            The URL for this group cluster. This is not the same
+            as the NavigationUrl. This is more like a groups
+            website that might be outside the Arena system.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.CreatedBy">
+            <summary>
+            The name of the person who created this small group
+            cluster.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.DateCreated">
+            <summary>
+            The date this group cluster was created on.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.ModifiedBy">
+            <summary>
+            The name of the last person to have modified this small
+            group cluster.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.DateModified">
+            <summary>
+            The date this group cluster was last modified on.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.NavigationUrl">
+            <summary>
+            The URL that can be used to navigate to this group
+            cluster in a web browser.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCluster.ImageUrl">
+            <summary>
+            The URL that can be used to retrieve the group cluster's
+            image.
+            </summary>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.Contracts.SmallGroupClusterType">
+            <summary>
+            Defines the information about a type of cluster. This information
+            is useful, and practically required, to properly deal with small
+            group clusters.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupClusterType.AllowOccurrences">
+            <summary>
+            Wether or not small groups of this cluster type are
+            allowed to have occurrences.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupClusterType.AllowRegistration">
+            <summary>
+            Wether or not to allow new small group members to be added
+            via a registration method.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupClusterType.CategoryID">
+            <summary>
+            The CategoryID that this cluster type relates to.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupClusterType.ClusterTypeID">
+            <summary>
+            The ID number of this ClusterType.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupClusterType.LeaderRelationshipStrength">
+            <summary>
+            Defined the strength of the relationship between small group
+            members and the leader of the small group. This value is used
+            to calculate peer values.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupClusterType.Name">
+            <summary>
+            The name of items at this level.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupClusterType.PeerRelationshipStrength">
+            <summary>
+            The strength of the relationship beteen members of the same
+            small group. This value is used to calculate peer values.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupClusterType.Levels">
+            <summary>
+            The list of cluster levels for this cluster type.
+            </summary>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.Contracts.SmallGroupClusterLevel">
+            <summary>
+            Defines information about a specific cluster level. This class
+            is embeded in the SmallGroupClusterType class and should not be
+            used outside of that context.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupClusterLevel.ClusterTypeID">
+            <summary>
+            The ClusterTypeID that this cluster level corresponds to.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupClusterLevel.Level">
+            <summary>
+            The level, as a numerical index, of this class of information.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupClusterLevel.LevelName">
+            <summary>
+            The name to be used at this level. This is not the name of
+            a small group or a specific level, but it is more an identifier
+            to describe the items at this level.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupClusterLevel.AllowGroups">
+            <summary>
+            Wether or not small groups will be allowed at this level.
+            </summary>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.FamilyAPI">
+            <summary>
+            FamilyAPI handles all methods and functions dealing with the Arena Family and related objects.
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.FamilyAPI.AddFamily">
+            <summary>
+            Adds a family based on the provided person<para></para>
+            <b>WEBSERVICE</b><para></para>
+            Action - POST<para></para>
+            Method - family/add<para></para>
+            Security - Custom<para></para>
+            </summary>
+            <param name="personid"></param>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.FamilyAPI.AddFamily(System.Int32,System.String)">
+            <summary>
+            Adds a family for the provided person using the provided last name.
+            </summary>
+            <param name="personId"></param>
+            <param name="lastName"></param>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.FamilyAPI.RemoveMember">
+            <summary>
+            Removes a person from a family<para></para>
+            <b>WEBSERVICE</b><para></para>
+            Action - POST<para></para>
+            Method - family/remove/member<para></para>
+            Security - Custom<para></para>
+            </summary>
+            <param name="familyid"></param>
+            <param name="personid"></param>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.FamilyAPI.GetFamilyByPersonId(System.Int32)">
+            <summary>
+            Gets the family of which the person belongs
+            </summary>
+            <param name="personId"></param>
+            <returns>GenericReference representing Family information</returns>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.Contracts.ProfileMemberActivity">
+            <summary>
+            This class provides a contract to pass a single activity record
+            of a person's profile membership .
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.Contracts.ProfileMemberActivity.#ctor(System.Data.DataRow)">
+            <summary>
+            Create a new ProfileMemberActivity object given the contents
+            of the DataRow, this is the designated initializer.
+            </summary>
+            <param name="dr">The DataRow as returned by GetProfileMemberActivityDetails_DT().</param>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.ProfileMemberActivity.Profile">
+            <summary>
+            A reference to the profile that this record pertains to.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.ProfileMemberActivity.Person">
+            <summary>
+            A reference to the person that this record pertains to.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.ProfileMemberActivity.ActivityTypeString">
+            <summary>
+            The textual representation of the activity lookup type. There is
+            currently no way to retrieve the lookup ID number.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.ProfileMemberActivity.CreatedBy">
+            <summary>
+            Who created this activity.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.ProfileMemberActivity.DateCreated">
+            <summary>
+            When the activity was created (activity cannot be modified).
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.ProfileMemberActivity.Notes">
+            <summary>
+            The notes associated with this activity.
+            </summary>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.CoreRpc">
+            <summary>
+            Provides the core functionality of the web service. Other
+            classes exist which provide the actual front-end to different
+            RPC providers. Class methods provide anonymous functionality,
+            such as checking the API version. Instance methods provide
+            authenticated functionality, such as searching for people.
+            In communicating with the RPC service, a few rules are followed.
+            The standard retrieval and update rules for structures here
+            infers that on retrieval, only fields that are valid and the
+            person has access to are filled in, the others are not included
+            to save bandwidth. During updates or record creation, only
+            those fields that are supplied (not null) are updated. Any
+            Enum, as of this version, are treated as integers so client
+            libraries should provide local enums or other provisions to
+            ensure the user knows what the value stands for.
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.CoreRpc.GetPersonPeers(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Retrieve an RpcPeerList object to identify all the peers the
+            given personID has. If no peers are found then the peers member
+            of the returned object will be empty. If the person is not found
+            then an empty peers member will be returned.
+            </summary>
+            <param name="personID">The ID of the person who we are interested in.</param>
+            <param name="start">The number of peers to start with for paging.</param>
+            <param name="count">The number of peers to return, if more peers are available only this many will be returned.</param>
+            <returns>A new RpcPeerList object which contains the information requested.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.CoreRpc.GetProfileOccurrences(System.Int32)">
+            <summary>
+            Get a list of all occurence IDs for a profile.
+            </summary>
+            <param name="profileID">The profile to list occurences of.</param>
+            <returns>Integer array of occurrence IDs.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.CoreRpc.GetSmallGroupOccurrences(System.Int32)">
+            <summary>
+            Find all occurrences of the given small group. If the small group
+            currently has no occurrences then an empty array is returned.
+            </summary>
+            <param name="groupID">The small group whose occurrences we are interested in.</param>
+            <returns>Integer array of occurenceIDs.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.CoreRpc.PersonFieldOperationAllowed(System.Int32,System.Int32,Arena.Security.OperationType)">
+            <summary>
+            Determines if the personID has access to perform the
+            indicated operation on the person field in question.
+            </summary>
+            <param name="personID">The ID number of the person whose security access we are checking.</param>
+            <param name="field">The ID number of the PersonField that the user wants access to.</param>
+            <param name="operation">The type of access the user needs to proceed.</param>
+            <returns>true/false indicating if the operation is allowed.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.CoreRpc.ProfileOperationAllowed(System.Int32,System.Int32,Arena.Security.OperationType)">
+            <summary>
+            Determines if the personID has access to perform the
+            indicated operation on the profile in question.
+            </summary>
+            <param name="personID">The ID number of the person whose security access we are checking.</param>
+            <param name="profileID">The ID number of the profile the user wants access to.</param>
+            <param name="operation">The type of access the user needs to proceed.</param>
+            <returns>true/false indicating if the operation is allowed.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.CoreRpc.GroupClusterOperationAllowed(System.Int32,System.Int32,Arena.Security.OperationType)">
+            <summary>
+            Determines if the personID has access to perform the indicated operation
+            on the small group cluster in question.
+            </summary>
+            <param name="personID">The ID number of the person whose security access we are checkin.</param>
+            <param name="clusterID">The ID number of the profile the user wants access to.</param>
+            <param name="operation">The type of access the user needs to proceed.</param>
+            <returns>true/false indicating if the operation is allowed.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.CoreRpc.PermissionsOperationAllowed(Arena.Security.PermissionCollection,System.Int32,Arena.Security.OperationType)">
+            <summary>
+            Checks the PermissionCollection class to determine if the
+            indicated operation is allowed for the person identified by
+            their ID number.
+            </summary>
+            <param name="permissions">The collection of permissions to check. These should be object permissions.</param>
+            <param name="personID">The ID number of the user whose security access we are checking.</param>
+            <param name="operation">The type of access the user needs to proceed.</param>
+            <returns>true/false indicating if the operation is allowed.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.CoreRpc.DefaultOrganizationID">
+            <summary>
+            Retrieve the default organization ID for this web
+            service. This is retrieved via the "Organization"
+            application setting in the web.config file.
+            </summary>
+            <returns>An integer indicating the organization ID.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.CoreRpc.BaseUrl">
+            <summary>
+            Retrieve the base url (the portion of the URL without the last path
+            component, that is the filename and query string) of the current
+            web request.
+            </summary>
+            <returns>Base url as a string.</returns>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.RpcPeer">
+            <summary>
+            Identifies a single peer by its person ID, formal name and
+            the peer level. In general, the formal name should be used
+            for displaying and the Level should be used for sorting with
+            higher numbers displayed first.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.RpcPeer.PersonID">
+            <summary>
+            The personID of the peer identified by this structure.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.RpcPeer.FullName">
+            <summary>
+            A string which identifies the formal name of this person, this
+            name can and should be used when displaying the name of the
+            person in a list to be chosen from for navigating to this person.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.RpcPeer.Score">
+            <summary>
+            The peer score value of this person.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.RpcPeer.Trend">
+            <summary>
+            True if this peer has an upward trend, false otherwise.
+            </summary>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.RpcPeerList">
+            <summary>
+            This structure identifies a list of peers and the person
+            to whom the list belongs.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.RpcPeerList.PersonID">
+            <summary>
+            The person to identify who this peer list belongs to.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.RpcPeerList.Peers">
+            <summary>
+            The list of peers associated with this person.
+            </summary>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.RestMethodInfo">
+            <summary>
+            Provides all the information needed to find and call a method that
+            has been registered in the API system.
+            </summary>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.RestApiAnonymous">
+            <summary>
+            When this attribute is applied to a WebGet or WebInvoke enabled
+            it becomes an anonymous and does not require authentication to
+            be called.
+            </summary>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.RestApiCustom">
+            <summary>
+            When this attribute is applied to a WebInvoke
+            it limits to custom authentication.
+            </summary>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.NoOp">
+            <summary>
+            The NoOp interface is a junk interface, it does nothing except
+            provide a means for creating an OperationContract.
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.RestApi.RegisterHandlers">
+            <summary>
+            Register all handlers in the system both internal and
+            external.
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.RestApi.RegisterInternalHandlers">
+            <summary>
+            Register all internal handlers that are a part of this
+            assembly.
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.RestApi.Info(System.Int32)">
+            <summary>
+            Ths is a debug method that provides information about what is
+            registered and the registration log.
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.RestApi.RegisterExternalHandlers">
+            <summary>
+            Register all external handlers by calling the registration methods
+            of each registered library in the lookup table.
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.RestApi.RegisterExternalClass(System.String,System.String,System.String,System.String)">
+            <summary>
+            Register the specified class given its assembly name (dll), namespace and
+            class name. A new instance of that class is created and registered into the
+            base url.
+            </summary>
+            <param name="baseUrl">The base url to use when registering this object.</param>
+            <param name="assemblyName">The assembly (dll) name to load the class from.</param>
+            <param name="namespaceName">The namespace that the class is a part of.</param>
+            <param name="className">The name of the class to create an instance of.</param>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.RestApi.RegisterHandler(System.Object,System.String,System.String,System.Reflection.MethodInfo)">
+            <summary>
+            Register the given method with the specified url.
+            </summary>
+            <param name="url">The URL that will be used, relative to the service.api handler.</param>
+            <param name="mi">The method to be invoked.</param>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.RestApi.RegisterObjectContractHandlers(System.String,System.Object,System.Type)">
+            <summary>
+            Look for any WCF style methods that contain a WebGet or WebInvoke
+            attribute. On any found methods, register the method as a url
+            handler for that instance.
+            </summary>
+            <param name="baseUrl">The base URL to use when registering methods for this instance, pass an empty string for no base url.</param>
+            <param name="instance">The object whose methods will be registered into the URL handlers.</param>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.RestApi.FindHandler(System.String,System.Uri,System.Uri,System.UriTemplateMatch@)">
+            <summary>
+            Given the URL, find the associated method handler.
+            </summary>
+            <param name="baseUrl">The base URL of the web service handler.</param>
+            <param name="url">The relative URL of the web service for the specific request.</param>
+            <param name="match">The UriTemplateMatch object that contains information about the UriTemplate that was matched.</param>
+            <returns>Either null or a valid MethodInfo reference to the method to be invoked.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.RestApi.ProcessRequest(System.Web.HttpContext)">
+            <summary>
+            Process the web request.
+            </summary>
+            <param name="context">The context of this single web request.</param>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.RestApi.TypeIsServiceContract(System.Type)">
+            <summary>
+            Check the object type and any interfaces to see if it has any
+            ServiceContract attributes.
+            </summary>
+            <param name="objectType">The object type to check.</param>
+            <returns>true if the objectType or it's interfaces has a ServiceContract.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.RestApi.RequestString(System.Web.HttpRequest)">
+            <summary>
+            Convert the HttpRequest's InputStream (post data) into a
+            String object.
+            </summary>
+            <param name="request">The request whose POST data we are intersted in.</param>
+            <returns>String representation of the input stream.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.RestApi.PersonFieldOperationAllowed(System.Int32,System.Int32,Arena.Security.OperationType)">
+            <summary>
+            Determines if the personID has access to perform the
+            indicated operation on the person field in question.
+            </summary>
+            <param name="personID">The ID number of the person whose security access we are checking.</param>
+            <param name="field">The ID number of the PersonField that the user wants access to.</param>
+            <param name="operation">The type of access the user needs to proceed.</param>
+            <returns>true/false indicating if the operation is allowed.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.RestApi.ProfileOperationAllowed(System.Int32,System.Int32,Arena.Security.OperationType)">
+            <summary>
+            Determines if the personID has access to perform the
+            indicated operation on the profile in question.
+            </summary>
+            <param name="personID">The ID number of the person whose security access we are checking.</param>
+            <param name="profileID">The ID number of the profile the user wants access to.</param>
+            <param name="operation">The type of access the user needs to proceed.</param>
+            <returns>true/false indicating if the operation is allowed.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.RestApi.GroupClusterOperationAllowed(System.Int32,System.Int32,Arena.Security.OperationType)">
+            <summary>
+            Determines if the personID has access to perform the indicated operation
+            on the small group cluster in question.
+            </summary>
+            <param name="personID">The ID number of the person whose security access we are checkin.</param>
+            <param name="clusterID">The ID number of the profile the user wants access to.</param>
+            <param name="operation">The type of access the user needs to proceed.</param>
+            <returns>true/false indicating if the operation is allowed.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.RestApi.PermissionsOperationAllowed(Arena.Security.PermissionCollection,System.Int32,Arena.Security.OperationType)">
+            <summary>
+            Checks the PermissionCollection class to determine if the
+            indicated operation is allowed for the person identified by
+            their ID number.
+            </summary>
+            <param name="permissions">The collection of permissions to check. These should be object permissions.</param>
+            <param name="personID">The ID number of the user whose security access we are checking.</param>
+            <param name="operation">The type of access the user needs to proceed.</param>
+            <returns>true/false indicating if the operation is allowed.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.RestApi.DefaultOrganizationID">
+            <summary>
+            Retrieve the default organization ID for this web
+            service. This is retrieved via the "Organization"
+            application setting in the web.config file.
+            </summary>
+            <returns>An integer indicating the organization ID.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.RestApi.BaseUrl">
+            <summary>
+            Retrieve the base url (the portion of the URL without the last path
+            component, that is the filename and query string) of the current
+            web request.
+            </summary>
+            <returns>Base url as a string.</returns>
+        </member>
+        <member name="P:Arena.Custom.NPM.WebService.RestApi.IsReusable">
+            <summary>
+            This HTTP handler is not reusable. Whatever that means.
+            </summary>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.Contracts.SystemVersion">
+            <summary>
+            This class provides the information required to determine what
+            version the Arena system is running to a client.
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.Contracts.SystemVersion.#ctor">
+            <summary>
+            Build the information contained in the SystemVersion class.
+            At some point we should probably have a .h file that the Assembly
+            file includes as well to set version information.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SystemVersion.ArenaVersion">
+            <summary>
+            This variable contains the Arena Codebase version as a string, in
+            the format of major.minor.revision.build, e.g. 2009.2.400.1401
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SystemVersion.DatabaseVersion">
+            <summary>
+            This variable contains the Arena Database version as a string, in
+            the format of major.minor.revision.build, e.g. 2009.2.400.01401
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SystemVersion.ApiVersion">
+            <summary>
+            This variable contains the API version as a string, in the format
+            of major.minor[.revision[.build]], e.g. 0.4 (which for comparison
+            should be considered to be 0.4.0.0).
+            </summary>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.SmallGroupAPI">
+            <summary>
+            SmallGroupAPI handles all methods and functions dealing with the Arena SmallGroup and related objects.
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SmallGroupAPI.GetSmallGroupCategories">
+            <summary>
+            Retrieve a list of all group categories in the system. If, by chance,
+            no categories exist then an empty array is returned.
+            </summary>
+            <returns>Integer array of group categoryIDs.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SmallGroupAPI.GetSmallGroupCategory(System.Int32)">
+            <summary>
+            Retrieve the information about a small group category.
+            If the given category is not found then -1 is returned in the
+            categoryID member.
+            </summary>
+            <param name="categoryID">The category to find information about.</param>
+            <returns>Basic information about a group category.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SmallGroupAPI.GetSmallGroupClusters(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Retrieve a list of all group clusters at the root level of the
+            group category. If no group clusters are contained in the category
+            then an empty array is returned.
+            </summary>
+            <param name="categoryID">The parent category to find all root clusters of.</param>
+            <param name="clusterID"></param>
+            <param name="start"></param>
+            <param name="max"></param>
+            <returns>Integer array of clusterIDs.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SmallGroupAPI.GetSmallGroupCluster(System.Int32)">
+            <summary>
+            Retrieve the information about a group cluster. If the group
+            cluster is not found then -1 is returned in the clusterID member.
+            </summary>
+            <param name="clusterID">The cluster to retrieve information about.</param>
+            <returns>Basic information about the group cluster.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SmallGroupAPI.GetSmallGroupClusterType(System.Int32)">
+            <summary>
+            Retrieve the information about the specified small group
+            cluster type.
+            </summary>
+            <param name="clusterTypeID">The ID of the cluster type to retrieve.</param>
+            <returns>SmallGroupClusterType which identifies the requested clusterTypeID.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SmallGroupAPI.GetSmallGroups(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Retrieve a list of small groups which reside under the parent group
+            cluster. If no small groups are found then an empty array is returned.
+            </summary>
+            <param name="clusterID">The parent cluster to find small groups under.</param>
+            <returns>An integer array of small groups under the parent cluster.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SmallGroupAPI.GetSmallGroup(System.Int32)">
+            <summary>
+            Retrieves information about the small group. If the small
+            group is not found then -1 is returned in the groupID member.
+            </summary>
+            <param name="groupID">The small group to retrieve information about.</param>
+            <returns>Basic information about the small group.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SmallGroupAPI.GetSmallGroupMembers(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Find all people who are members of the small group and return their
+            person IDs. All members are returned including in-active members. If the
+            small group has no members then an empty array is returned.
+            </summary>
+            <param name="groupID">The small group to find members of.</param>
+            <param name="start">The 0-based index to start retrieving at.</param>
+            <param name="max">The maximum number of members to retrieve.</param>
+            <returns>Integer array of personIDs.</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SmallGroupAPI.Create">
+            <summary>  
+            A Person object is instantiated based on its Person Id. Then, a Login is setup.  Finally, each Role is assigned to the Person.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - POST<para></para>
+             Method - smallgroup/create<para></para>
+             Security - Custom<para></para>
+             </summary>  
+             <param name="sessionid">For Logging: String Session Id from core_api_session associated with this request.</param>  
+             <param name="personid">Integer Person Id for the person whom security is being established.</param>
+             <param name="username">String Username for the person whom security is being established.</param>
+             <param name="password">String Password for the person whome security is being established.</param>
+             <param name="useridlabel">String User Id Label is the string stored with this transaction. This should indicate what application is making this call.</param>
+             <param name="roleids">String Role Ids is a comma separated list of role id's from the secu_role table which will be added for the person.</param>
+             <returns>Nothing is returned.</returns>  
+             <exception cref="T:System.Exception">Exceptions are not handled by this method.</exception>  
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SmallGroupAPI.AddMember">
+            <summary>
+            Adds the person to a the group with the role<para></para>
+            <b>WEBSERVICE</b><para></para>
+            Action - POST<para></para>
+            Method - smallgroup/addmember<para></para>
+            Security - Custom<para></para>
+            </summary>
+            <param name="groupid"></param>
+            <param name="personid"></param>
+            <param name="rolelookupid"></param>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.Contracts.SmallGroupMember">
+            <summary>
+            Defines the information that is needed to display a list of small
+            group members. 
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupMember.PersonID">
+            <summary>
+            The ID number that identifies this small group member. This ID
+            number can be used to request more detailed information about
+            the member as it is a standard PersonID.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupMember.FullName">
+            <summary>
+            The name to be used when displaying the member's name in a list.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupMember.Group">
+            <summary>
+            The small group that this membership information is for.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupMember.Active">
+            <summary>
+            Identifies if this member is active in the small group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupMember.Role">
+            <summary>
+            The role of this member in the small group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupMember.UniformNumber">
+            <summary>
+            The uniform number if the small group supports uniform numbers.
+            </summary>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.Contracts.Profile">
+            <summary>
+            This structure contains the basic information about a profile.
+            This structure follows the standard RPC retrieval and updating
+            rules.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.ProfileID">
+            <summary>
+            Profile ID this information is referencing.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.ParentID">
+            <summary>
+            The parent profile ID or -1 if this is a root profile.
+            Note: Is that correct? Need to check on that.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.Name">
+            <summary>
+            The name of this profile.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.ProfileTypeString">
+            <summary>
+            The string representation of the ProfileType enum identifying
+            if this is a Personal, Ministry, Serving or Event tag.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.ProfileType">
+            <summary>
+            The numeric representation of the ProfileType enum identifying
+            if this is a Personal, Ministry, Serving or Event tag.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.Active">
+            <summary>
+            Specifies wether or not this profile is currently marked as
+            being active.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.ProfileActiveMemberCount">
+            <summary>
+            The number of active members of this profile, not including
+            child profiles.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.ProfileMemberCount">
+            <summary>
+            The total number of members of this profile, not including
+            child profiles.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.CampusID">
+            <summary>
+            The Campus ID this profile is to the associated with.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.Notes">
+            <summary>
+            User entered notes about this profile.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.Owner">
+            <summary>
+            The person that owns this profile.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.CreatedBy">
+            <summary>
+            The person login that created this profile.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.DateCreated">
+            <summary>
+            The date and time this profile as initially created.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.ModifiedBy">
+            <summary>
+            The person login who last modified this profile.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.DateModified">
+            <summary>
+            The date and time that this profile was last modified.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.CriticalMembers">
+            <summary>
+            The number of critical members of this profile and all
+            descendents.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.ActiveMembers">
+            <summary>
+            The number of active members of this profile and all
+            descendents.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.InReviewMembers">
+            <summary>
+            The number of members in review for this profile and all
+            descendents.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.NoContactMembers">
+            <summary>
+            The number of members who have not yet been contacted for
+            this profile and all descendents.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.PendingMembers">
+            <summary>
+            The number of pending members of this profile and all
+            descendents.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.TotalMembers">
+            <summary>
+            The total number of members of this profile and all
+            descendents.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.NavigationUrl">
+            <summary>
+            The URL that can be used to view this profile in the Arena
+            portal.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.OwnerRelationshipStrength">
+            <summary>
+            The strength of the relationship between the owner and
+            members of this profile.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.Profile.PeerRelationshipStrength">
+            <summary>
+            The strength of the relationship between members of this
+            profile.
+            </summary>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.ProfileAPI">
+            <summary>
+            ProfileAPI handles all methods and functions dealing with the Arena Profile and related objects.<para></para>
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.ProfileAPI.AddMember">
+            <summary>  
+            Add a person to a tag.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - POST<para></para>
+             Method - profile/add/member<para></para>
+             Security - Custom<para></para>
+             </summary>
+             <returns>Nothing</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Arena.Custom.NPM.WebService.ProfileAPI.GetProfileList(System.String,System.String,System.Int32,System.Int32,System.String)" -->
+        <member name="M:Arena.Custom.NPM.WebService.ProfileAPI.GetProfileInformation(System.Int32)">
+            <summary>
+            Retrieve the information about a profile. If the profile
+            is not found, or no access is permitted to the profile, then
+            an exception is thrown to the client.<para></para>
+            <b>WEBSERVICE</b><para></para>
+            Action - GET<para></para>
+            Method - profile/{profileID}<para></para>
+            Security - Builtin<para></para>
+            </summary>
+            <param name="profileID">The ID number of the profile to look up.</param>
+            <returns>Basic information about the profile.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Arena.Custom.NPM.WebService.ProfileAPI.GetProfileMembers(System.Int32,System.String,System.Int32,System.Int32)" -->
+        <member name="M:Arena.Custom.NPM.WebService.ProfileAPI.GetProfileMember(System.Int32,System.Int32)">
+            <summary>
+            Retrieve a single member of a profile. If the profile is not
+            found, or no access is permitted to the profile, then
+            an exception is thrown to the client.<para></para>
+            <b>WEBSERVICE</b><para></para>
+            Action - GET<para></para>
+            Method - profile/{profileID}/members/{personID}<para></para>
+            Security - Builtin<para></para>
+            </summary>
+            <param name="profileID">The ID number of the profile to look up.</param>
+            <param name="personID">The ID number of the person to look up.</param>
+            <returns>Basic information about the profile.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Arena.Custom.NPM.WebService.ProfileAPI.GetProfileMemberActivity(System.Int32,System.Int32,System.Int32,System.Int32)" -->
+        <member name="T:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory">
+            <summary>
+            Retrieve the basic information about a group category. This
+            structure follows the standard RPC retrieval and update rules.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.CategoryID">
+            <summary>
+            The unique ID number that identifies this group category.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.Name">
+            <summary>
+            The name of this group category.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.AllowRegistrations">
+            <summary>
+            Flag to indicate if this group category allows registrations.
+            I really don't remember what group registrations are for and
+            would love to update this documentation.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.AllowBulkUpdate">
+            <summary>
+            Flag to indicate if this category allows bulk update operations
+            to be performed on the members of any small groups of this type
+            of category. I think.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.HistoryIsPrivate">
+            <summary>
+            Wether or not the history of this category type is private. I
+            would assume this is a person's history in the group. I am
+            guessing, that this keeps the history private from fellow group
+            members but not the leader, but I may be wrong.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.CreditAsSmallGroup">
+            <summary>
+            Wether membership in any small group of this category type should
+            count as small group membership. For example, a team group
+            probably does not count as a small group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.UsesArea">
+            <summary>
+            Flag indicating if small groups of this category type should be
+            assigned to a specific area.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.UseUniformNumber">
+            <summary>
+            Allow, Assign, or some such, uniform number. Generally this flag
+            would only be used if this group category has to do with teams.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.DefaultRole">
+            <summary>
+            The default role of new members in small groups of this type of
+            category.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.AgeGroupCaption">
+            <summary>
+            The caption to be used with the PrimaryAge member of the
+            RpcSmallGroupInformation structure.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.DescriptionCaption">
+            <summary>
+            The caption to be used with the Description member of the
+            RpcSmallGroupInformation structure.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.LeaderCaption">
+            <summary>
+            The caption to be used with the LeaderID member of the
+            RpcSmallGroupInformation structure.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.LocationTargetCaption">
+            <summary>
+            The caption to be used with the TargetLocationID member
+            of the RpcSmallGroupInformation structure.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.MaritalPreferenceCaption">
+            <summary>
+            The caption to be used with the PrimaryMaritalStatus member
+            of the RpcSmallGroupInformation structure.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.MaximumMembersCaption">
+            <summary>
+            The caption to be used with the MaximumMembers member of the
+            RpcSmallGroupInformation structure.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.MeetingDayCaption">
+            <summary>
+            The caption to be used with the MeetingDay member of the
+            RpcSmallGroupInformation structure.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.NameCaption">
+            <summary>
+            The caption to be used with the Name member of the
+            RpcSmallGroupInformation structure.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.NotesCaption">
+            <summary>
+            The caption to be used with the Notes member of the
+            RpcSmallGroupInformation structure.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.ParentCaption">
+            <summary>
+            The caption to be used with the ParentID member of the
+            RpcSmallGroupInformation structure.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.PictureCaption">
+            <summary>
+            The caption to be used with the PictureUrl member of the
+            RpcSmallGroupInformation structure.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.ScheduleCaption">
+            <summary>
+            The caption to be used with the Schedule member of the
+            RpcSmallGroupInformation structure.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.TopicCaption">
+            <summary>
+            The caption to be used with the Topic member of the
+            RpcSmallGroupInformation structure.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.TypeCaption">
+            <summary>
+            The caption to be used with the TypeID member of the
+            RpcSmallGroupInformation structure.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.UrlCaption">
+            <summary>
+            The caption to be used with the Url member of the
+            RpcSmallGroupInformation structure.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroupCategory.ValidRoles">
+            <summary>
+            An array of RpcLookups which list the valid roles members
+            are allowed to take on for small groups of this category
+            type.
+            </summary>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.AddressAPI">
+            <summary>
+            PersonAPI handles all methods and functions dealing with the Arena Person and related objects.
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.AddressAPI.Standardize(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Standardize an address.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - GET<para></para>
+             Method - address/standardize<para></para>
+             Security - Anonymous<para></para>
+            </summary>
+            <param name="city"></param>
+            <param name="postalcode"></param>
+            <param name="state"></param>
+            <param name="street1"></param>
+            <param name="street2"></param>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.SystemAPI">
+            <summary>
+            SystemAPI handles all methods and functions dealing with the Arena system.
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SystemAPI.GetSystemVersion">
+            <summary>
+            Retrieve the version number of the entire system.<para></para>
+            <b>WEBSERVICE</b><para></para>
+            Action - GET<para></para>
+            Method - sys/version<para></para>
+            Security - Anonymous<para></para>
+            </summary>
+            <returns>SystemVersion object.</returns>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.PhoneAPI">
+            <summary>
+            PersonAPI handles all methods and functions dealing with the Arena Person and related objects.
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.PhoneAPI.Standardize(System.String)">
+            <summary>
+            Standardize a phone number.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - GET<para></para>
+             Method - phone/standardize<para></para>
+             Security - Anonymous<para></para>
+            </summary>
+            <param name="phone"></param>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.SessionAPI">
+            <summary>
+            SessionAPI handles all methods and functions dealing with the Arena Session and related objects.
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SessionAPI.GetByApiKey(System.String)">
+            <summary>  
+             Return active sessions for a specific application.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - GET<para></para>
+             Method - session/list/apikey/{apikey}/<para></para>
+             Security - Builtin<para></para>
+             </summary>  
+             <param name="apikey">API key to pull the sessions.</param>
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.SecurityAPI">
+            <summary>
+            SecurityAPI handles all methods and functions dealing with the Arena Security and related objects.
+            </summary>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SecurityAPI.Activate">
+            <summary>
+             If a pending activation key is found, then create a login for the corresponding person and create roles.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - POST<para></para>
+             Method - security/activate<para></para>
+             Security - Anonymous<para></para>
+             </summary>  
+             <param name="sessionid">For Logging: String; Session Id from core_api_session associated with this request.</param>  
+             <param name="key">Key to be found.</param>
+             <param name="username">Username to be used to create a login.</param>
+             <param name="password">Password to be used to create a login.</param>
+             <param name="roleids">Comma-delimited list of roles to be added to the user's account.</param>
+             <returns>PersonReference Object</returns>  
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SecurityAPI.AttemptPasswordKey(System.String)">
+            <summary>  
+            An activation key is searched. If one is found in the pending state and not expired, then a Person object is instantiated
+             based on the corresponding Person Id, which is returned.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - GET<para></para>
+             Method - security/activation/key/{key}<para></para>
+             Security - Anonymous<para></para>
+             </summary>  
+             <param name="key">Key to be found.</param>
+             <returns>PersonReference Object</returns>  
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SecurityAPI.AddPasswordKey">
+            <summary>  
+            If a person is found then return an activation key.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - POST<para></para>
+             Method - security/add/activation<para></para>
+             Security - Builtin<para></para>   
+             </summary>  
+             <param name="personid">Integer; Person Id</param>
+             <param name="applicationid">Integer; Application Id</param>
+             <param name="minutestilexpiration">Integer; Minutes Til Expiration is the number of minutes after now that an activation key is valid. Default is 5 hours.</param>
+             <param name="email">Email of the person to be registered.</param>
+             <param name="emailofficialbcc">BCC Email Address (optional)</param>
+             <param name="emailofficialcc">CC Email Address (optional)</param>
+             <param name="emailofficialfromaddress">Email address from whome the e-mail will be sent.</param>
+             <param name="emailofficialfromname">Name from whom the e-mail will be sent</param>
+             <param name="emailofficialhtml">Html template including {SHORTKEY} replaced by activation short key, {LONGKEY} replaced by actual activation key, {NAME} replaced by nick name, {URLENCODED} replaced by encoded url, {URLDISPLAY} replaced by url.</param>
+             <param name="emailofficialtext">Text template including {SHORTKEY} replaced by activation short key, {LONGKEY} replaced by actual activation key, {NAME} replaced by nick name, {URLENCODED} replaced by encoded url, {URLDISPLAY} replaced by url.</param>
+             <param name="emailofficialreplyto">Email address in case the person replies.</param>
+             <param name="emailofficialsubject">Subject of the email.</param>
+             <param name="emailnotificationbcc">BCC Email Address (optional)</param>
+             <param name="emailnotificationcc">CC Email Address (optional)</param>
+             <param name="emailnotificationfromaddress">Email address from whome the e-mail will be sent.</param>
+             <param name="emailnotificationfromname">Name from whom the e-mail will be sent</param>
+             <param name="emailnotificationhtml">Html template including {SHORTKEY} replaced by activation short key, {LONGKEY} replaced by actual activation key, {NAME} replaced by nick name, {URLENCODED} replaced by encoded url, {URLDISPLAY} replaced by url.</param>
+             <param name="emailnotificationtext">Text template including {SHORTKEY} replaced by activation short key, {LONGKEY} replaced by actual activation key, {NAME} replaced by nick name, {URLENCODED} replaced by encoded url, {URLDISPLAY} replaced by url.</param>
+             <param name="emailnotificationreplyto">Email address in case the person replies.</param>
+             <param name="emailnotificationsubject">Subject of the email.</param>
+             <param name="send">Boolean determining if an email will be sent of not.</param>
+             <returns>GenericReference including activation key.</returns>  
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SecurityAPI.Activation(System.String)">
+            <summary>  
+            An activation key is searched. If one is found in the pending state and not expired, then a Person object is instantiated
+             based on the corresponding Person Id, which is returned.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - GET<para></para>
+             Method - security/activation/key/{key}<para></para>
+             Security - Anonymous<para></para>
+             </summary>  
+             <param name="key">Key to be found.</param>
+             <returns>PersonReference Object</returns>  
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SecurityAPI.AddActivation">
+            <summary>  
+            If a person is found then create an activation key.  Optionally send an e-mail with activation instructions and
+            e-mail notifcations to secondary email accounts about that e-mail. Official email goes to primary unless there
+            are no emails on record. If no emails on record then the provided email is treated like the primary. All other
+            active emails get a notification. Also, if the provided email is an inactive email it will still get a
+            notification message<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - POST<para></para>
+             Method - security/add/activation<para></para>
+             Security - Builtin<para></para>   
+             </summary>  
+             <param name="personid">Integer; Person Id</param>
+             <param name="minutestilexpiration">Integer; Minutes Til Expiration is the number of minutes after now that an activation key is valid. Default is 5 hours.</param>
+             <param name="email">Email of the person to be registered.</param>
+             <param name="emailbcc">BCC Email Address (optional)</param>
+             <param name="emailcc">CC Email Address (optional)</param>
+             <param name="emailfromaddress">Email address from whome the e-mail will be sent.</param>
+             <param name="emailfromname">Name from whom the e-mail will be sent</param>
+             <param name="emailhtml">Html template including "{key}" to be replaced by the actual activation key.</param>
+             <param name="emailtext">Text template including "{key}" to be replaced by the actual activation key.</param>
+             <param name="emailreplyto">Email address in case the person replies.</param>
+             <param name="emailsubject">Subject of the email.</param>
+             <param name="send">Boolean determining if an email will be sent of not.</param>
+             <returns>GenericReference including activation key.</returns>  
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SecurityAPI.AddLogin">
+            <summary>  
+            If a pending activation key is found, then create a login for the corresponding person and create roles.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - POST<para></para>
+             Method - security/add/login<para></para>
+             Security - Builtin<para></para>
+             </summary>  
+             <param name="personid">Person ID referencing person to whom the login is to be added.</param>
+             <param name="username">Username to be used to create a login.</param>
+             <param name="password">Password to be used to create a login.</param>
+             <returns>Nothing</returns>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SecurityAPI.AddLogin(System.Int32,System.String,System.String)">
+            <summary>
+            If a pending activation key is found, then create a login for the corresponding person and create roles.
+            </summary>
+            <param name="personId"></param>
+            <param name="username"></param>
+            <param name="password"></param>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SecurityAPI.AddRoles">
+            <summary>  
+            If a pending activation key is found, then create a login for the corresponding person and create roles.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - POST<para></para>
+             Method - security/add/role<para></para>
+             Security - Builtin<para></para>
+             </summary>  
+             <param name="key">Key to be found.</param>
+             <param name="username">Username to be used to create a login.</param>
+             <param name="password">Password to be used to create a login.</param>
+             <param name="roleids">Comma-delimited list of roles to be added to the user's account.</param>
+             <returns>Nothing</returns>  
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SecurityAPI.Create">
+            <summary>  
+            A Person object is instantiated based on its Person Id. Then, a Login is setup.  Finally, each Role is assigned to the Person.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - POST<para></para>
+             Method - security/create<para></para>
+             Security - Anonymous<para></para>
+             </summary>  
+             <param name="username">String Username for the person whom security is being established.</param>
+             <param name="password">String Password for the person whome security is being established.</param>
+             <param name="roleids">String Role Ids is a comma separated list of role id's from the secu_role table which will be added for the person.</param>
+             <returns>Nothing is returned.</returns>  
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SecurityAPI.GetPassword(System.String)">
+            <summary>  
+             Return the password for the username.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - GET<para></para>
+             Method - security/getpassword/username/{username}/<para></para>
+             Security - Builtin<para></para>
+             </summary>  
+             <param name="username">Username to pull the password.</param>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SecurityAPI.GetUsername(System.String,System.String,System.String)">
+            <summary>  
+             Return the username(s) for the provided Person ID.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - GET<para></para>
+             Method - security/getusername/email/{email}/firstname/{firstname}/lastname/{lastname}/<para></para>
+             Security - Builtin<para></para>
+             </summary>  
+             <param name="email">Email</param>
+             <param name="firstname">First Name</param>
+             <param name="lastname">Last Name</param>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SecurityAPI.GetUsername(System.String,System.String)">
+            <summary>  
+             Return the username(s) for the provided Person ID.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - GET<para></para>
+             Method - security/getusername/personid/{personid}/?active={active}<para></para>
+             Security - Builtin<para></para>
+             </summary>  
+             <param name="personid">Person ID to pull the logins.</param>
+             <param name="active">Optional Boolean; Boolean to limit active, inactive or all results.</param>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SecurityAPI.Register">
+            <summary>  
+            If a person is found with the provided e-mail address, last name and first name then return an activation key.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - POST<para></para>
+             Method - security/register<para></para>
+             Security - Anonymous<para></para>
+             </summary>  
+             <param name="minutestilexpiration">Integer; Minutes Til Expiration is the number of minutes after now that an activation key is valid. Default is 5 hours.</param>
+             <param name="email">Email of the person to be registered.</param>
+             <param name="firstname">First name of the person to be registered.</param>
+             <param name="lastname">Last name of the person to be registered.</param>
+             <returns>GenericReference including activation key.</returns>  
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SecurityAPI.Reset">
+            <summary>
+            Reset works only in non-production environments. It removes logins and roles for the person<para></para>
+            <b>WEBSERVICE</b><para></para>
+            Action - POST<para></para>
+            Method - security/reset<para></para>
+            Security - Anonymous<para></para>
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SecurityAPI.ResetPassword">
+            <summary>  
+            If a login is found with the provided username, then the password is reset.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - POST<para></para>
+             Method - security/reset/password<para></para>
+             Security - Custom<para></para>
+             </summary>  
+             <param name="forcereset">Optional Boolean; Determines if the user must reset their password the next time they login.</param>
+             <param name="username">Username associated with the user's login.</param>
+             <param name="password">Password they would like.</param>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SecurityAPI.Unlock">
+            <summary>  
+            If a pending activation key is found, then create a login for the corresponding person and create roles.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - POST<para></para>
+             Method - security/unlock<para></para>
+             Security - Anonymous<para></para>
+             </summary>  
+             <param name="sessionid">For Logging: String; Session Id from core_api_session associated with this request.</param>  
+             <param name="userid">For Logging: Integer; User Id associated with this request.</param>
+             <param name="key">Key to be found.</param>
+             <param name="username">Username to be used to create a login.</param>
+             <param name="password">Password to be used to create a login.</param>
+             <param name="roleids">Comma-delimited list of roles to be added to the user's account.</param>
+             <returns>Nothing</returns>  
+             <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SecurityAPI.Validate(System.String)">
+            <summary>  
+            Validates the session id only<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - GET<para></para>
+             Method - security/validate/sessionid/{sessionid}/<para></para>
+             Security - Builtin<para></para>
+             </summary>  
+             <param name="sessionid">For Logging: String; Session Id from core_api_session associated with this request.</param>  
+             <returns>Generic reference object</returns>  
+             <exception cref="T:System.Exception">None</exception>  
+        </member>
+        <member name="M:Arena.Custom.NPM.WebService.SecurityAPI.Validation(System.String)">
+            <summary>  
+            An activation key is searched. If one is found in the pending state and not expired, then a Person object is instantiated
+             based on the corresponding Person Id, which is returned.<para></para>
+             <b>WEBSERVICE</b><para></para>
+             Action - GET<para></para>
+             Method - security/validation/email/{email}/<para></para>
+             Security - Anonymous<para></para>
+             </summary>  
+             <param name="key">Key to be found.</param>
+             <returns>Person object</returns>  
+             <exception cref="T:System.Exception">Throws an exception is email, lastname or firstname is not provided.</exception>  
+        </member>
+        <member name="T:Arena.Custom.NPM.WebService.Contracts.SmallGroup">
+            <summary>
+            Contains the general information about a small group. This
+            structure conforms to the standard RPC retrieval and update
+            rules.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.GroupID">
+            <summary>
+            The ID number of the small group that this information
+            pertains to.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.GroupClusterID">
+            <summary>
+            The ID number of the parent cluster of this small group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.CategoryID">
+            <summary>
+            The group category ID of this small group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.Name">
+            <summary>
+            The name of this small group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.Active">
+            <summary>
+            Flag specifying wether or not this small group is to be
+            considered active.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.ClusterLevelID">
+            <summary>
+            The Level of this small group in the type.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.ClusterTypeID">
+            <summary>
+            The TypeID of this small group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.Description">
+            <summary>
+            The description that has been associated with this small
+            group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.Schedule">
+            <summary>
+            A textual description of the schedule for this small
+            group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.Notes">
+            <summary>
+            The notes about this small group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.RegistrationCount">
+            <summary>
+            The number of pending registrations for this
+            small group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.MemberCount">
+            <summary>
+            The total number of members in this small group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.Leader">
+            <summary>
+            The person who is considered the leader of this small
+            group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.AreaID">
+            <summary>
+            The ID number of the area that this small group resides
+            in.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.GroupUrl">
+            <summary>
+            The small groups custom website URL. This is not the same
+            as the NavigationUrl.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.CreatedBy">
+            <summary>
+            The name of the person that created this small group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.DateCreated">
+            <summary>
+            The date that this small group was created on.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.ModifiedBy">
+            <summary>
+            The name of the last person to have modified this small
+            group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.DateModified">
+            <summary>
+            The date on which this small group was last modified on.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.NavigationUrl">
+            <summary>
+            The URL to be used for navigating to this small group
+            in a web browser.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.PictureUrl">
+            <summary>
+            The URL that can be used to retrieve the picture for
+            this small group, if there is one.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.AverageAge">
+            <summary>
+            The average age of the members of this small group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.Distance">
+            <summary>
+            The average distance from the Target Location of the
+            members of this small group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.TargetLocationID">
+            <summary>
+            The ID number of the address record that identifies the
+            location at which this small group meets at.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.MeetingDay">
+            <summary>
+            The lookup record which identifies the day(s) of the week
+            that this small group meets on.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.PrimaryAge">
+            <summary>
+            The lookup record which identifies the primary age range
+            of this small group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.PrimaryMaritalStatus">
+            <summary>
+            The lookup record which identifies the suggested marital
+            status of this small group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.Topic">
+            <summary>
+            The lookup record which identifies the topic of discussion
+            for this small group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.MaxMembers">
+            <summary>
+            The maximum number of members that should be allowed in
+            this small group.
+            </summary>
+        </member>
+        <member name="F:Arena.Custom.NPM.WebService.Contracts.SmallGroup.Private">
+            <summary>
+            Determines whether or not this small group is private or not.
+            </summary>
+        </member>
+    </members>
+</doc>
